@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Accedi</title>
+  <title>PQuadro s.a.s.</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -67,9 +67,10 @@
   <script>
     function checkUsername() {
       const username = document.getElementById('username').value;
-      const excelFile = 'utenti.xlsx';
+      const githubPagesApi = require('github-pages-api');
+      const excelFile = githubPagesApi.getRawFile('utenti.xlsx');
       const sheet = SpreadsheetApp.openById(excelFile).getActiveSheet();
-      const row = sheet.findRow(username);
+      const row = sheet.findRow(username, { githubPages: true });
       if (row != null) {
         alert(`Username found in row ${row}.`);
       } else {
