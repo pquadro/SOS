@@ -57,11 +57,19 @@
 <body>
   <div class="login-container">
     <h2>Login</h2>
-    <form class="login-form">
-      <input type="text" placeholder="Username" required>
-      <input type="password" placeholder="Password" required>
+    <form class="login-form" onsubmit="showPopup(); return false;">
+      <input type="text" id="username" placeholder="Username" required>
+      <input type="password" id="password" placeholder="Password" required>
       <button type="submit">Login</button>
     </form>
   </div>
+  
+  <script>
+    function showPopup() {
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+      alert(`Username: ${username}\nPassword: ${password}`);
+    }
+  </script>
 </body>
 </html>
