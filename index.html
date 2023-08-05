@@ -67,15 +67,48 @@
   </div>
 
   <script>
-    function showPopup() {
-      const username = document.getElementById('username').value;
-      const password = document.getElementById('password').value;
-      alert(`Username: ${username}\nPassword: ${password}`);
+  // Load the JSON data before the page is fully loaded
+  window.addEventListener('DOMContentLoaded', () => {
+    fetch('data.json')
+      .then((response) => response.json())
+      .then((jsonData) => {
+        // Store the JSON data in a global variable for later use
+        window.jsonData = jsonData;
+      })
+      .catch((error) => {
+        console.error('Error fetching JSON data:', error);
+      });
+  });
+
+  function showPopup() {
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+    alert(`Username: ${username}\nPassword: ${password}`);
+  }
+
+  function executeMenu() {
+    window.location.href = 'Menu.html';
+  }
+
+  // Function to check if the username exists in the JSON data
+  function checkUsername() {
+    const username = document.getElementById('username').value;
+
+    // Check if the JSON data has been loaded successfully
+    if (!window.jsonData) {
+      alert('JSON data not loaded yet. Please try again later.');
+      return;
     }
 
-    function executeMenu() {
-      window.location.href = 'Menu.html';
+    // Search for the username in the "A" column of the JSON data
+    const row = window.jsonData.findIndex((data) => data.A === username);
+
+    if (row >= 0) {
+      alert(`Username found in row ${row + 1} of the Excel file.`);
+    } else {
+      alert('Username not found in the Excel file.');
     }
-  </script>
+  }
+</script>
 </body>
 </html>
