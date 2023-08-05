@@ -58,8 +58,9 @@
   <div class="login-container">
     <h2>Login</h2>
     <form class="login-form" onsubmit="showPopup(); return false;">
-      <input type="text" id="username" placeholder="Username" required>
-      <input type="password" id="password" placeholder="Password" required>
+      <!-- Set autocomplete="off" for both input fields -->
+      <input type="text" id="username" placeholder="Username" required autocomplete="off">
+      <input type="password" id="password" placeholder="Password" required autocomplete="off">
       <!-- Changed the type to "button" and added an onclick event -->
       <button type="button" onclick="executeMenu()">Login</button>
     </form>
