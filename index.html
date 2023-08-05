@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PQuadro s.a.s.</title>
+  <title>Login</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -57,25 +57,23 @@
 <body>
   <div class="login-container">
     <h2>Login</h2>
-    <form class="login-form" onsubmit="checkUsername(); return false;">
+    <form class="login-form" onsubmit="showPopup(); return false;">
       <input type="text" id="username" placeholder="Username" required>
       <input type="password" id="password" placeholder="Password" required>
-      <button type="submit">Login</button>
+      <!-- Changed the type to "button" and added an onclick event -->
+      <button type="button" onclick="executeMenu()">Login</button>
     </form>
   </div>
-  
+
   <script>
-    function checkUsername() {
+    function showPopup() {
       const username = document.getElementById('username').value;
-      const githubPagesApi = require('github-pages-api');
-      const excelFile = githubPagesApi.getRawFile('utenti.xlsx');
-      const sheet = SpreadsheetApp.openById(excelFile).getActiveSheet();
-      const row = sheet.findRow(username, { githubPages: true });
-      if (row != null) {
-        alert(`Username found in row ${row}.`);
-      } else {
-        alert(`Username not found.`);
-      }
+      const password = document.getElementById('password').value;
+      alert(`Username: ${username}\nPassword: ${password}`);
+    }
+
+    function executeMenu() {
+      window.location.href = 'Menu.html';
     }
   </script>
 </body>
