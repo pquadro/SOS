@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login</title>
+  <title>PQuadro s.a.s.</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -57,7 +57,7 @@
 <body>
   <div class="login-container">
     <h2>Login</h2>
-    <form class="login-form" onsubmit="showPopup(); return false;">
+    <form class="login-form" onsubmit="checkUsername(); return false;">
       <input type="text" id="username" placeholder="Username" required>
       <input type="password" id="password" placeholder="Password" required>
       <button type="submit">Login</button>
@@ -65,10 +65,17 @@
   </div>
   
   <script>
-    function showPopup() {
+    function checkUsername() {
       const username = document.getElementById('username').value;
-      const password = document.getElementById('password').value;
-      alert(`Username: ${username}\nPassword: ${password}`);
+      const githubPagesApi = require('github-pages-api');
+      const excelFile = githubPagesApi.getRawFile('utenti.xlsx');
+      const sheet = SpreadsheetApp.openById(excelFile).getActiveSheet();
+      const row = sheet.findRow(username, { githubPages: true });
+      if (row != null) {
+        alert(`Username found in row ${row}.`);
+      } else {
+        alert(`Username not found.`);
+      }
     }
   </script>
 </body>
