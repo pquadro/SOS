@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Wide Web Page with Left Panel</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            display: flex;
+            height: 100vh;
+        }
+
+        .blue-panel {
+            background-color: blue;
+            flex: 1;
+            padding: 20px;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .white-content {
+            flex: 3;
+            background-color: white;
+        }
+
+        .button {
+            margin-top: 50px;
+            padding: 10px 20px;
+            background-color: #f1f1f1;
+            border: none;
+            border-radius: 5px;
+            color: black;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="blue-panel">
+            <h2>Left Panel</h2>
+            <button class="button">Button 1</button>
+            <button class="button">Button 2</button>
+            <button class="button">Button 3</button>
+        </div>
+        <div class="white-content">
+            <!-- Add your content for the right side here -->
+        </div>
+    </div>
+</body>
+</html>
