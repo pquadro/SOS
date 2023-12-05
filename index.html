@@ -1,114 +1,67 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f9f9f9;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-    }
-    .login-container {
-      background-color: #fff;
-      border-radius: 8px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-      padding: 20px;
-      width: 350px; /* Increased width */
-    }
-    .login-container h2 {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-    .login-form input[type="text"],
-    .login-form input[type="password"] {
-      width: 100%;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      margin-bottom: 10px;
-    }
-    .login-form button {
-      width: 100%;
-      padding: 10px;
-      background-color: #4CAF50;
-      color: #fff;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      transition: background-color 0.2s;
-    }
-    .login-form button:hover {
-      background-color: #45a049;
-    }
-    /* Added margin on the right side */
-    .login-form input[type="text"],
-    .login-form input[type="password"],
-    .login-form button {
-      margin-right: 5px;
-    }
-  </style>
+<style>
+/* Form */
+.form {
+  border: 3px solid #f1f1f1;
+  width: 300px;
+  margin: 0 auto;
+}
+
+/* Input fields */
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+/* Password field */
+input[type=password] {
+  margin-bottom: 16px;
+}
+
+/* Forgot password link */
+a {
+  float: right;
+  text-decoration: none;
+  color: #000;
+}
+
+/* Login button */
+button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+/* Hover effect */
+button:hover {
+  background-color: #45A049;
+}
+</style>
 </head>
 <body>
-  <div class="login-container">
-    <h2>Login</h2>
-    <form class="login-form" onsubmit="showPopup(); return false;">
-      <!-- Set autocomplete="off" for both input fields -->
-      <input type="text" id="username" placeholder="Username" required autocomplete="off">
-      <input type="password" id="password" placeholder="Password" required autocomplete="off">
-      <!-- Changed the type to "button" and added an onclick event -->
-      <button type="button" onclick="executeMenu()">Login</button>
-    </form>
-  </div>
 
-  <script>
-  // Load the JSON data before the page is fully loaded
-  window.addEventListener('DOMContentLoaded', () => {
-    fetch('data.json')
-      .then((response) => response.json())
-      .then((jsonData) => {
-        // Store the JSON data in a global variable for later use
-        window.jsonData = jsonData;
-      })
-      .catch((error) => {
-        console.error('Error fetching JSON data:', error);
-      });
-  });
+<form action="/action_page.php" class="form">
 
-  function showPopup() {
-    const username = document.getElementById('username').value;
-    const password = document.getElementById('password').value;
-    alert(`Username: ${username}\nPassword: ${password}`);
-  }
+  <input type="text" name="email" placeholder="Email Address">
 
-  function executeMenu() {
-    window.location.href = 'Menu.html';
-  }
+  <input type="password" name="password" placeholder="Password">
 
-  // Function to check if the username exists in the JSON data
-  function checkUsername() {
-    const username = document.getElementById('username').value;
+  <a href="#">Forgot password?</a>
 
-    // Check if the JSON data has been loaded successfully
-    if (!window.jsonData) {
-      alert('JSON data not loaded yet. Please try again later.');
-      return;
-    }
+  <button type="submit">Login</button>
 
-    // Search for the username in the "A" column of the JSON data
-    const row = window.jsonData.findIndex((data) => data.A === username);
+</form>
 
-    if (row >= 0) {
-      alert(`Username found in row ${row + 1} of the Excel file.`);
-    } else {
-      alert('Username not found in the Excel file.');
-    }
-  }
-</script>
 </body>
 </html>
+
